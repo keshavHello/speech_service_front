@@ -24,8 +24,7 @@ function App() {
     formData.append("file", file);
     formData.append("text", contentText);
     try {
-      // https://speech-service-dsf9.onrender.com/upload
-      const response = await fetch("http://localhost:8000/upload", {
+      const response = await fetch("https://speech-service-dsf9.onrender.com/upload", {
         method: "POST",
         body: formData,
       });
