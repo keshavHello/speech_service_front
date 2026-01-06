@@ -5,23 +5,27 @@ function App() {
   const [file, setFile] = useState(null);
   const [status, setStatus] = useState("");
   const [audioUrl, setAudioUrl] = useState(null);
+  const [contentText, setContentText] = useState("");
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
     setAudioUrl(null); // reset old audio
   };
-
+  
   const handleUpload = async () => {
     if (!file) {
-      setStatus("Please select a file first");
-      return;
+      if (contentText.trim() === "") {
+        setStatus("Please enter some text or upload a .txt file");
+        return;
+      }
     }
 
     const formData = new FormData();
     formData.append("file", file);
-
+    formData.append("text", contentText);
     try {
-      const response = await fetch("https://speech-service-dsf9.onrender.com/upload", {
+      // https://speech-service-dsf9.onrender.com/upload
+      const response = await fetch("http://localhost:8000/upload", {
         method: "POST",
         body: formData,
       });
@@ -51,6 +55,12 @@ function App() {
       <button onClick={handleUpload}>Upload</button>
 
       <p className="status">{status}</p>
+      <textarea
+        className="paragraph-input"
+        placeholder="Write your text here..."
+        value={contentText}
+        onChange={(e) => setContentText(e.target.value)}
+      />
 
       {/* ✅ Audio controls */}
       {audioUrl && (

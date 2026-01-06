@@ -40,3 +40,23 @@
 .read-the-docs {
   color: #888;
 }
+
+.paragraph-input {
+  display: block;
+  width: 100%;
+  max-width: 7000px;
+  min-height: 740px;
+  padding: 12px 14px;
+  margin: 24px auto;
+  font-size: 16px;
+  line-height: 1.5;
+  resize: vertical;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.paragraph-input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
